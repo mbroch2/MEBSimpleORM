@@ -20,6 +20,7 @@
 		CF1CCD51173B06E600F28A93 /* MEBSimpleORMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1CCD4B173B06E600F28A93 /* MEBSimpleORMModel.m */; };
 		CF1CCD52173B06E600F28A93 /* ObjectiveCPropertyDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1CCD4D173B06E600F28A93 /* ObjectiveCPropertyDescription.m */; };
 		CF1CCD53173B06E600F28A93 /* MEBSimpleORM.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1CCD4F173B06E600F28A93 /* MEBSimpleORM.m */; };
+		CF1CCD55173B08AA00F28A93 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CF1CCD54173B08AA00F28A93 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		CF1CCD4D173B06E600F28A93 /* ObjectiveCPropertyDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCPropertyDescription.m; sourceTree = "<group>"; };
 		CF1CCD4E173B06E600F28A93 /* MEBSimpleORM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBSimpleORM.h; sourceTree = "<group>"; };
 		CF1CCD4F173B06E600F28A93 /* MEBSimpleORM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBSimpleORM.m; sourceTree = "<group>"; };
+		CF1CCD54173B08AA00F28A93 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				CF1CCD47173B06E600F28A93 /* Classes */,
 				CF1CCD4E173B06E600F28A93 /* MEBSimpleORM.h */,
 				CF1CCD4F173B06E600F28A93 /* MEBSimpleORM.m */,
+				CF1CCD54173B08AA00F28A93 /* README.md */,
 			);
 			name = MEBSimpleORM;
 			path = ../MEBSimpleORM;
@@ -192,6 +195,7 @@
 				CF1CCD3C173B061600F28A93 /* Default.png in Resources */,
 				CF1CCD3E173B061600F28A93 /* Default@2x.png in Resources */,
 				CF1CCD40173B061600F28A93 /* Default-568h@2x.png in Resources */,
+				CF1CCD55173B08AA00F28A93 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
