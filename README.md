@@ -161,6 +161,7 @@ through the originalJSONData property on MEBSimpleORMModel.
 Planned Improvements
 --------------------
 
+- Adding an actual demo application!
 - Adding networking support for download/parsing in one line.
 - Adding support for dynamic setters for non-object types.
 - Adding documentation.
