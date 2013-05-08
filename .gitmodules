@@ -1,0 +1,3 @@
+[submodule "Libraries/ActiveSupportInflector"]
+	path = Libraries/ActiveSupportInflector
+	url = git://github.com/tomafro/ActiveSupportInflector.git

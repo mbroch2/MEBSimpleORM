@@ -16,6 +16,10 @@
 		CF1CCD3C173B061600F28A93 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1CCD3B173B061600F28A93 /* Default.png */; };
 		CF1CCD3E173B061600F28A93 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1CCD3D173B061600F28A93 /* Default@2x.png */; };
 		CF1CCD40173B061600F28A93 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF1CCD3F173B061600F28A93 /* Default-568h@2x.png */; };
+		CF1CCD50173B06E600F28A93 /* MEBSimpleORMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1CCD49173B06E600F28A93 /* MEBSimpleORMManager.m */; };
+		CF1CCD51173B06E600F28A93 /* MEBSimpleORMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1CCD4B173B06E600F28A93 /* MEBSimpleORMModel.m */; };
+		CF1CCD52173B06E600F28A93 /* ObjectiveCPropertyDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1CCD4D173B06E600F28A93 /* ObjectiveCPropertyDescription.m */; };
+		CF1CCD53173B06E600F28A93 /* MEBSimpleORM.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1CCD4F173B06E600F28A93 /* MEBSimpleORM.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,14 @@
 		CF1CCD3B173B061600F28A93 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CF1CCD3D173B061600F28A93 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CF1CCD3F173B061600F28A93 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CF1CCD48173B06E600F28A93 /* MEBSimpleORMManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBSimpleORMManager.h; sourceTree = "<group>"; };
+		CF1CCD49173B06E600F28A93 /* MEBSimpleORMManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBSimpleORMManager.m; sourceTree = "<group>"; };
+		CF1CCD4A173B06E600F28A93 /* MEBSimpleORMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBSimpleORMModel.h; sourceTree = "<group>"; };
+		CF1CCD4B173B06E600F28A93 /* MEBSimpleORMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBSimpleORMModel.m; sourceTree = "<group>"; };
+		CF1CCD4C173B06E600F28A93 /* ObjectiveCPropertyDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCPropertyDescription.h; sourceTree = "<group>"; };
+		CF1CCD4D173B06E600F28A93 /* ObjectiveCPropertyDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCPropertyDescription.m; sourceTree = "<group>"; };
+		CF1CCD4E173B06E600F28A93 /* MEBSimpleORM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEBSimpleORM.h; sourceTree = "<group>"; };
+		CF1CCD4F173B06E600F28A93 /* MEBSimpleORM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEBSimpleORM.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,7 @@
 		CF1CCD1D173B061600F28A93 = {
 			isa = PBXGroup;
 			children = (
+				CF1CCD46173B06E600F28A93 /* MEBSimpleORM */,
 				CF1CCD2F173B061600F28A93 /* MEBSimpleORMDemo */,
 				CF1CCD28173B061600F28A93 /* Frameworks */,
 				CF1CCD27173B061600F28A93 /* Products */,
@@ -97,6 +110,30 @@
 				CF1CCD3F173B061600F28A93 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF1CCD46173B06E600F28A93 /* MEBSimpleORM */ = {
+			isa = PBXGroup;
+			children = (
+				CF1CCD47173B06E600F28A93 /* Classes */,
+				CF1CCD4E173B06E600F28A93 /* MEBSimpleORM.h */,
+				CF1CCD4F173B06E600F28A93 /* MEBSimpleORM.m */,
+			);
+			name = MEBSimpleORM;
+			path = ../MEBSimpleORM;
+			sourceTree = "<group>";
+		};
+		CF1CCD47173B06E600F28A93 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CF1CCD48173B06E600F28A93 /* MEBSimpleORMManager.h */,
+				CF1CCD49173B06E600F28A93 /* MEBSimpleORMManager.m */,
+				CF1CCD4A173B06E600F28A93 /* MEBSimpleORMModel.h */,
+				CF1CCD4B173B06E600F28A93 /* MEBSimpleORMModel.m */,
+				CF1CCD4C173B06E600F28A93 /* ObjectiveCPropertyDescription.h */,
+				CF1CCD4D173B06E600F28A93 /* ObjectiveCPropertyDescription.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +204,10 @@
 			files = (
 				CF1CCD36173B061600F28A93 /* main.m in Sources */,
 				CF1CCD3A173B061600F28A93 /* MEBAppDelegate.m in Sources */,
+				CF1CCD50173B06E600F28A93 /* MEBSimpleORMManager.m in Sources */,
+				CF1CCD51173B06E600F28A93 /* MEBSimpleORMModel.m in Sources */,
+				CF1CCD52173B06E600F28A93 /* ObjectiveCPropertyDescription.m in Sources */,
+				CF1CCD53173B06E600F28A93 /* MEBSimpleORM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
