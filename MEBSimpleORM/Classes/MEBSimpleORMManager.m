@@ -7,6 +7,13 @@
 //
 
 #import "MEBSimpleORMManager.h"
+#import "AFNetworking.h"
+
+@interface MEBSimpleORMManager ()
+
+@property (nonatomic, strong) NSOperationQueue *requestQueue;
+
+@end
 
 @implementation MEBSimpleORMManager
 
@@ -24,8 +31,7 @@
 
 - (id)init
 {
-    if (self = [super init])
-    {
+    if (self = [super init]) {
         // Do additional initialization here
     }
     return self;
@@ -41,14 +47,44 @@
     return [rootClass objectFromJSONString:string];
 }
 
-- (MEBSimpleORMModel *)modelFromURL:(NSURL *)url completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock
+- (void)modelFromURL:(NSURL *)url completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock
 {
-    return nil;
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    [self modelWithRequest:request completion:completionBlock error:errorBlock];
+    
 }
 
-- (MEBSimpleORMModel *)modelWithRequest:(NSURLRequest *)request completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock
+- (void)modelWithRequest:(NSURLRequest *)request completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock
 {
-    return nil;
+
+    [NSURLConnection sendAsynchronousRequest:request queue:self.requestQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        if (error == nil) {
+  
+        }
+        else {
+            
+            // Take the data and convert it into a string
+            
+            
+        }
+        
+    }];
+    
+}
+
+#pragma mark - Setters and Getters
+
+- (NSOperationQueue *)requestQueue
+{
+    if (!_requestQueue) {
+       
+        self.requestQueue = [NSOperationQueue new];
+        
+    }
+    return _requestQueue;
 }
 
 @end
