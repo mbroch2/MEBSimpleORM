@@ -11,17 +11,22 @@
 #import <objc/runtime.h>
 #import "NSString+ActiveSupportInflector.h"
 
+static NSMutableDictionary *classPropertyCache;
+
 @interface MEBSimpleORMModel ()
 
 @property (nonatomic, strong) id internalData;
 @property (nonatomic, readonly) NSArray *classProperties;
+@property (nonatomic, readonly) NSDictionary *classPropertyDescriptions;
 
++ (ObjectiveCPropertyDescription *)propertyDescriptionForSelector:(SEL)aSelector;
 + (BOOL)isSelectorAPropertySetter:(SEL)aSelector;
 + (NSString *)propertyNameFromSetterSelector:(SEL)aSelector;
 + (BOOL)isStringAClassPropertyName:(NSString *)propertyName;
 + (BOOL)isSelectorAPropertyAccessor:(SEL)aSelector;
 + (IMP)getterImplementationForProperty:(ObjectiveCPropertyDescription *)property;
 + (NSArray *)classProperties;
++ (NSDictionary *)classPropertyDescriptions;
 
 - (NSString *)convertPropertySelectorToKeyedSubscript:(SEL)aSelector;
 - (void)setObject:(id)object forKeyedSubscript:(id<NSCopying>)key;
@@ -32,21 +37,30 @@
 
 #pragma mark - Object Lifecycle
 
-+ (id)objectFromJSONString:(NSString *)string withClass:(Class)c
++ (void)initialize
 {
-    if ([c isSubclassOfClass:[MEBSimpleORMModel class]]) {
+    if (self == [MEBSimpleORMModel class]) {
         
-        return [[c alloc] initWithJSONString:string];
+        classPropertyCache = [NSMutableDictionary dictionary];
+        
+    }
+}
+
++ (id)objectFromJSONString:(NSString *)string
+{
+    if ([[self class] isSubclassOfClass:[MEBSimpleORMModel class]]) {
+        
+        return [[[self class] alloc] initWithJSONString:string];
         
     }
     return nil;
 }
 
-+ (id)objectFromJSONObject:(NSDictionary *)object withClass:(Class)c
++ (id)objectFromJSONObject:(NSDictionary *)object
 {
-    if ([c isSubclassOfClass:[MEBSimpleORMModel class]]) {
+    if ([[self class] isSubclassOfClass:[MEBSimpleORMModel class]]) {
         
-        return [[c alloc] initWithJSONObject:object];
+        return [[[self class] alloc] initWithJSONObject:object];
         
     }
     return nil;
@@ -123,26 +137,85 @@
     
 }
 
++ (ObjectiveCPropertyDescription *)propertyDescriptionForSelector:(SEL)aSelector
+{
+    
+    NSString *selector = NSStringFromSelector(aSelector);
+    
+    __block ObjectiveCPropertyDescription *propertyDescription = nil;
+    
+    // Check getters
+    [[self classPropertyDescriptions] enumerateKeysAndObjectsUsingBlock:^(NSString *property, ObjectiveCPropertyDescription *description, BOOL *stop) {
+        
+        if ([property isEqual:selector] || aSelector == description.getter || aSelector == description.setter) {
+
+            propertyDescription = description;
+            
+            *stop = YES;
+            
+        }
+        
+    }];
+    
+    if (propertyDescription) return propertyDescription;
+    
+    return nil;
+    
+}
+
 + (BOOL)isSelectorAPropertySetter:(SEL)aSelector
 {
 
     NSString *propertyName = [self propertyNameFromSetterSelector:aSelector];
     
-    if (propertyName) {
-        
-        return [self isStringAClassPropertyName:propertyName];
-        
-    }
+    __block BOOL found = NO;
     
-    return NO;
+    [[self classPropertyDescriptions] enumerateKeysAndObjectsUsingBlock:^(NSString *property, ObjectiveCPropertyDescription *description, BOOL *stop) {
+        
+        if ([property isEqual:propertyName]) {
+            
+            found = YES;
+            *stop = YES;
+            
+        }
+        else if (aSelector == description.setter) {
+            
+            found = YES;
+            *stop = YES;
+            
+        }
+        
+    }];
+    
+    return found;
     
 }
 
 + (BOOL)isSelectorAPropertyAccessor:(SEL)aSelector
 {
+    
     NSString *selector = NSStringFromSelector(aSelector);
     
-    return [self isStringAClassPropertyName:selector];
+    __block BOOL found = NO;
+
+    [[self classPropertyDescriptions] enumerateKeysAndObjectsUsingBlock:^(NSString *property, ObjectiveCPropertyDescription *description, BOOL *stop) {
+        
+        if ([property isEqual:selector]) {
+            
+            found = YES;
+            *stop = YES;
+            
+        }
+        else if (aSelector == description.getter) {
+            
+            found = YES;
+            *stop = YES;
+            
+        }
+        
+    }];
+    
+    return found;
     
 }
 
@@ -181,28 +254,47 @@
     return [[self class] classProperties];
 }
 
-+ (NSArray *)classProperties
+- (NSDictionary *)classPropertyDescriptions
 {
+    return [[self class] classPropertyDescriptions];
+}
+
++ (NSDictionary *)classPropertyDescriptions
+{
+
+    NSString *key = NSStringFromClass([self class]);
     
-    NSMutableArray *properties = [NSMutableArray array];
+    if (classPropertyCache[key] == nil) {
     
-    unsigned int propertyCount, i;
-    
-    objc_property_t *propertyList = class_copyPropertyList([self class], &propertyCount);
-    
-    for (i = 0; i < propertyCount; i++) {
+        NSMutableDictionary *propertyDescriptions = [NSMutableDictionary dictionary];
         
-        objc_property_t property = propertyList[i];
+        unsigned int propertyCount, i;
         
-        ObjectiveCPropertyDescription *propertyDescription = [[ObjectiveCPropertyDescription alloc] initWithProperty:property];
+        objc_property_t *propertyList = class_copyPropertyList([self class], &propertyCount);
         
-        [properties addObject:propertyDescription.name];
+        for (i = 0; i < propertyCount; i++) {
+            
+            objc_property_t property = propertyList[i];
+            
+            ObjectiveCPropertyDescription *propertyDescription = [[ObjectiveCPropertyDescription alloc] initWithProperty:property];
+            
+            [propertyDescriptions setValue:propertyDescription forKey:propertyDescription.name];
+            
+        }
+        
+        free(propertyList);
+        
+        classPropertyCache[key] = propertyDescriptions;
         
     }
     
-    free(propertyList);
+    return classPropertyCache[key];
+}
+
++ (NSArray *)classProperties
+{
     
-    return properties;
+    return [[self classPropertyDescriptions] allKeys];
     
 }
 
@@ -210,11 +302,10 @@
 
 + (BOOL)resolveInstanceMethod:(SEL)sel
 {
-    // NSString *selector = NSStringFromSelector(sel);
-    
+
     if ([self isSelectorAPropertyAccessor:sel]) {
         
-        ObjectiveCPropertyDescription *property = [ObjectiveCPropertyDescription propertyDescriptionForProperty:NSStringFromSelector(sel) inClass:[self class]];
+        ObjectiveCPropertyDescription *property = [self propertyDescriptionForSelector:sel];
         
         IMP imp = [self getterImplementationForProperty:property];
         
@@ -230,9 +321,7 @@
     }
     else if ([self isSelectorAPropertySetter:sel]) {
         
-        NSString *propertyName = [self propertyNameFromSetterSelector:sel];
-        
-        ObjectiveCPropertyDescription *property = [ObjectiveCPropertyDescription propertyDescriptionForProperty:propertyName inClass:[self class]];
+        ObjectiveCPropertyDescription *property = [self propertyDescriptionForSelector:sel];
         
         if (!property.isReadonly) {
             
@@ -250,7 +339,9 @@
             
         }
         else {
+            
             return [super resolveInstanceMethod:sel];
+            
         }
  
     }
@@ -447,7 +538,7 @@
                     }
                     else {
                     
-                        id parsedObject = [MEBSimpleORMModel objectFromJSONObject:value withClass:c];
+                        id parsedObject = [c objectFromJSONObject:value];
                         
                         if (parsedObject) {
                             
@@ -480,7 +571,7 @@
                     
                         [arrayData enumerateObjectsUsingBlock:^(NSDictionary *objectData, NSUInteger idx, BOOL *stop) {
                             
-                            id parsedObject = [MEBSimpleORMModel objectFromJSONObject:objectData withClass:collectionModel];
+                            id parsedObject = [c objectFromJSONObject:objectData];
                             
                             if (parsedObject) {
                                 [arrayObjects addObject:parsedObject];

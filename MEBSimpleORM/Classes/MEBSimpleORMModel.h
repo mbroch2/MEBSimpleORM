@@ -12,9 +12,9 @@
 
 @property (nonatomic, readonly) id originalJSONData;
 
-+ (id)objectFromJSONObject:(NSDictionary *)object withClass:(Class)c;
++ (id)objectFromJSONObject:(NSDictionary *)object;
 
-+ (id)objectFromJSONString:(NSString *)string withClass:(Class)c;
++ (id)objectFromJSONString:(NSString *)string;
 
 - (id)initWithJSONString:(NSString *)string;
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C23BA6D174AA7BD00EAB411 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C23BA6C174AA7BD00EAB411 /* Person.m */; };
+		6C23BA79174AA93100EAB411 /* ActiveSupportInflector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C23BA71174AA93100EAB411 /* ActiveSupportInflector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6C23BA7E174AA93100EAB411 /* NSString+ActiveSupportInflector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C23BA77174AA93100EAB411 /* NSString+ActiveSupportInflector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF1CCD2A173B061600F28A93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1CCD29173B061600F28A93 /* UIKit.framework */; };
 		CF1CCD2C173B061600F28A93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1CCD2B173B061600F28A93 /* Foundation.framework */; };
 		CF1CCD2E173B061600F28A93 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1CCD2D173B061600F28A93 /* CoreGraphics.framework */; };
@@ -24,6 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C23BA6B174AA7BD00EAB411 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Models/Person.h; sourceTree = "<group>"; };
+		6C23BA6C174AA7BD00EAB411 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Models/Person.m; sourceTree = "<group>"; };
+		6C23BA70174AA93100EAB411 /* ActiveSupportInflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveSupportInflector.h; sourceTree = "<group>"; };
+		6C23BA71174AA93100EAB411 /* ActiveSupportInflector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveSupportInflector.m; sourceTree = "<group>"; };
+		6C23BA76174AA93100EAB411 /* NSString+ActiveSupportInflector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ActiveSupportInflector.h"; sourceTree = "<group>"; };
+		6C23BA77174AA93100EAB411 /* NSString+ActiveSupportInflector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ActiveSupportInflector.m"; sourceTree = "<group>"; };
 		CF1CCD26173B061600F28A93 /* MEBSimpleORMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MEBSimpleORMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1CCD29173B061600F28A93 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CF1CCD2B173B061600F28A93 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,6 +71,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C23BA6A174AA7A100EAB411 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6C23BA6B174AA7BD00EAB411 /* Person.h */,
+				6C23BA6C174AA7BD00EAB411 /* Person.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6C23BA6E174AA93100EAB411 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				6C23BA6F174AA93100EAB411 /* ActiveSupportInflector */,
+			);
+			name = Libraries;
+			path = ../Libraries;
+			sourceTree = "<group>";
+		};
+		6C23BA6F174AA93100EAB411 /* ActiveSupportInflector */ = {
+			isa = PBXGroup;
+			children = (
+				6C23BA70174AA93100EAB411 /* ActiveSupportInflector.h */,
+				6C23BA71174AA93100EAB411 /* ActiveSupportInflector.m */,
+				6C23BA76174AA93100EAB411 /* NSString+ActiveSupportInflector.h */,
+				6C23BA77174AA93100EAB411 /* NSString+ActiveSupportInflector.m */,
+			);
+			path = ActiveSupportInflector;
+			sourceTree = "<group>";
+		};
 		CF1CCD1D173B061600F28A93 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +131,7 @@
 		CF1CCD2F173B061600F28A93 /* MEBSimpleORMDemo */ = {
 			isa = PBXGroup;
 			children = (
+				6C23BA6A174AA7A100EAB411 /* Models */,
 				CF1CCD38173B061600F28A93 /* MEBAppDelegate.h */,
 				CF1CCD39173B061600F28A93 /* MEBAppDelegate.m */,
 				CF1CCD30173B061600F28A93 /* Supporting Files */,
@@ -117,6 +156,7 @@
 		CF1CCD46173B06E600F28A93 /* MEBSimpleORM */ = {
 			isa = PBXGroup;
 			children = (
+				6C23BA6E174AA93100EAB411 /* Libraries */,
 				CF1CCD47173B06E600F28A93 /* Classes */,
 				CF1CCD4E173B06E600F28A93 /* MEBSimpleORM.h */,
 				CF1CCD4F173B06E600F28A93 /* MEBSimpleORM.m */,
@@ -212,6 +252,9 @@
 				CF1CCD51173B06E600F28A93 /* MEBSimpleORMModel.m in Sources */,
 				CF1CCD52173B06E600F28A93 /* ObjectiveCPropertyDescription.m in Sources */,
 				CF1CCD53173B06E600F28A93 /* MEBSimpleORM.m in Sources */,
+				6C23BA6D174AA7BD00EAB411 /* Person.m in Sources */,
+				6C23BA79174AA93100EAB411 /* ActiveSupportInflector.m in Sources */,
+				6C23BA7E174AA93100EAB411 /* NSString+ActiveSupportInflector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +369,7 @@
 				CF1CCD45173B061600F28A93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

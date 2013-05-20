@@ -7,13 +7,23 @@
 //
 
 #import "MEBAppDelegate.h"
+#import "Person.h"
+#import "MEBSimpleORM.h"
 
 @implementation MEBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+
+    NSString *testJSON = @"{ \"firstName\" : \"Matthew\", \"lastName\" : \"Brochstein\" }";
+    
+    Person *p = [Person objectFromJSONString:testJSON];
+    
+    NSLog(@"Person: %@", p);
+    
+    p.givenName = @"Brochsteins";
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

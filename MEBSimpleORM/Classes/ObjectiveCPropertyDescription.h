@@ -46,9 +46,13 @@ typedef enum {
 @property (nonatomic, readonly) BOOL isPrimative;
 @property (nonatomic, readonly) BOOL isObject;
 @property (nonatomic, readonly) BOOL isReadonly;
+@property (nonatomic, readonly) BOOL isCopy;
+@property (nonatomic, readonly) BOOL isRetain;
 @property (nonatomic, readonly) ObjectiveCPropertyAtomicity atomicity;
 @property (nonatomic, readonly) const char * getterImplementationTypeList;
 @property (nonatomic, readonly) const char * setterImplementationTypeList;
+@property (nonatomic, readonly) SEL getter;
+@property (nonatomic, readonly) SEL setter;
 
 + (id)propertyDescriptionForProperty:(NSString *)propertyName inClass:(Class)c;
 - (id)initWithProperty:(objc_property_t)property;

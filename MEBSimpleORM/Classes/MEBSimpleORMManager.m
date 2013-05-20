@@ -33,12 +33,12 @@
 
 - (MEBSimpleORMModel *)modelWithJSONObject:(NSDictionary *)dictionary andRootClass:(Class)rootClass
 {
-    return [MEBSimpleORMModel objectFromJSONObject:dictionary withClass:rootClass];
+    return [rootClass objectFromJSONObject:dictionary];
 }
 
 - (MEBSimpleORMModel *)modelWithJSONString:(NSString *)string andRootClass:(Class)rootClass
 {
-    return [MEBSimpleORMModel objectFromJSONString:string withClass:rootClass];
+    return [rootClass objectFromJSONString:string];
 }
 
 - (MEBSimpleORMModel *)modelFromURL:(NSURL *)url completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock

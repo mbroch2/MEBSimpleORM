@@ -9,3 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MEBSimpleORMModel.h"
 #import "MEBSimpleORMManager.h"
+
+@interface MEBSimpleORM : NSObject
+
+@end
