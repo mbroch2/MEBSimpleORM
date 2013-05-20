@@ -16,8 +16,8 @@ typedef void (^MEBSimpleORMManagerErrorBlock)(NSError *error);
 
 + (id)sharedInstance;
 
-- (void)modelWithRequest:(NSURLRequest *)request completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock;
-- (void)modelFromURL:(NSURL *)url completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock;
+- (void)modelWithRequest:(NSURLRequest *)request rootClass:(Class)rootClass completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock;
+- (void)modelFromURL:(NSURL *)url rootClass:(Class)rootClass completion:(MEBSimpleORMManagerCompletionBlock)completionBlock error:(MEBSimpleORMManagerErrorBlock)errorBlock;
 - (MEBSimpleORMModel *)modelWithJSONObject:(NSDictionary *)dictionary andRootClass:(Class)rootClass;
 - (MEBSimpleORMModel *)modelWithJSONString:(NSString *)string andRootClass:(Class)rootClass;
 
